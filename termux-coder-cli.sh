@@ -79,8 +79,10 @@ echo "2) Install Codex CLI only"
 echo "3) Install Gemini CLI only"
 echo "4) Install Claude Code only"
 echo "5) Install Cosine only"
-echo "6) Run a tool"
-read -p "Enter choice [1-6]: " choice
+echo "6) Install OpenCode AI only"
+echo "7) Install Factory AI only"
+echo "8) Run a tool"
+read -p "Enter choice [1-8]: " choice
 
 case $choice in
     1)
@@ -93,7 +95,9 @@ case $choice in
     3) install_gemini ;;
     4) install_claude ;;
     5) install_cosine ;;
-    6)
+    6) install_opencode ;;
+    7) install_factoryai ;;
+    8)
         echo "Available tools:"
         echo "1) codex"
         echo "2) gemini"

@@ -1,0 +1,24 @@
+{
+  "name": "termux-coder-cli",
+  "version": "1.0.0",
+  "description": "A CLI tool to manage AI coding assistants.",
+  "main": "src/index.js",
+  "bin": {
+    "termux-coder-cli": "bin/termux-coder-cli"
+  },
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "keywords": [
+    "cli",
+    "ai",
+    "coding",
+    "termux"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^8.3.0"
+  }
+}
