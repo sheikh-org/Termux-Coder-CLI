@@ -1,7 +1,6 @@
 const { exec } = require('child_process');
 const chalk = require('chalk');
-const { loadConfig, setConfigValue } = require('./config');
-const { startSession, stopSession, switchSession, sessionStatus, cleanSessions } = require('./session');
+const { loadConfig } = require('./config');
 
 const install = (tool, options) => {
   const config = loadConfig(options.config);
