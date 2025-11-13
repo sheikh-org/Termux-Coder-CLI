@@ -1,0 +1,26 @@
+#!/usr/bin/env node
+const { program } = require('commander');
+const chalk = require('chalk');
+const { install, run } = require('../src/commands');
+
+program
+  .version('1.0.0')
+  .description('A powerful CLI for managing AI coding assistants.');
+
+program
+  .command('install [tool]')
+  .description('Install a specific tool or all tools.')
+  .option('-v, --verbose', 'Enable verbose output for debugging.')
+  .option('-c, --config <path>', 'Specify a custom configuration file.')
+  .action((tool, options) => {
+    install(tool, options);
+  });
+
+program
+  .command('run [tool]')
+  .description('Run a specific tool.')
+  .action((tool) => {
+    run(tool);
+  });
+
+program.parse(process.argv);
