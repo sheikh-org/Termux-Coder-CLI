@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # =============================
-# AI Coding Agent Installer/Launcher
-# Supports: Codex CLI, Gemini CLI, Claude Code
+# Termux Coder CLI Installer/Launcher
+# Supports: Codex CLI, Gemini CLI, Claude Code, Cosine
 # =============================
 
 # Colors
@@ -63,6 +63,15 @@ install_claude() {
     fi
 }
 
+install_cosine() {
+    if command_exists cosine; then
+        echo -e "${GREEN}Cosine is already installed.${NC}"
+    else
+        echo -e "${YELLOW}Installing Cosine...${NC}"
+        curl -fsSL https://cosine.sh/install | bash
+    fi
+}
+
 # Menu
 echo -e "${YELLOW}Select an option:${NC}"
 echo "1) Install all AI agents"
@@ -70,28 +79,36 @@ echo "2) Install Codex CLI only"
 echo "3) Install Gemini CLI only"
 echo "4) Install Claude Code only"
 echo "5) Install Cosine only"
-echo "6) Run a tool"
-read -p "Enter choice [1-6]: " choice
+echo "6) Install OpenCode AI only"
+echo "7) Install Factory AI only"
+echo "8) Run a tool"
+read -p "Enter choice [1-8]: " choice
 
 case $choice in
     1)
         install_codex
         install_gemini
         install_claude
+        install_cosine
         ;;
     2) install_codex ;;
     3) install_gemini ;;
     4) install_claude ;;
-    5)
+    5) install_cosine ;;
+    6) install_opencode ;;
+    7) install_factoryai ;;
+    8)
         echo "Available tools:"
         echo "1) codex"
         echo "2) gemini"
         echo "3) claude"
+        echo "4) cosine"
         read -p "Enter tool number to run: " tool
         case $tool in
             1) codex ;;
             2) gemini ;;
             3) claude ;;
+            4) cosine ;;
             *) echo "Invalid option" ;;
         esac
         ;;
