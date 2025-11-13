@@ -9,25 +9,15 @@
 VERSION="1.0.0"
 
 show_help() {
-    echo -e "${GREEN}Termux Coder CLI v$VERSION${NC}"
+    echo "Termux Coder CLI v$VERSION"
+    echo "Usage: ./termux-coder-cli.sh [command]"
     echo ""
-    echo -e "${YELLOW}DESCRIPTION:${NC}"
-    echo "  A powerful command-line tool for installing and managing a collection of AI coding assistants on your system. This script is optimized for Termux, with automatic dependency installation to ensure a smooth setup process."
+    echo "Commands:"
+    echo "  --help, -h    Show this help message"
     echo ""
-    echo -e "${YELLOW}USAGE:${NC}"
-    echo "  ./termux-coder-cli.sh [ARGUMENT]"
-    echo "  Running the script without any arguments will launch an interactive menu that guides you through the installation and execution of the available tools."
-    echo ""
-    echo -e "${YELLOW}ARGUMENTS:${NC}"
-    echo "  -h, --help      Displays this comprehensive help message, providing details on usage, arguments, and available tools."
-    echo ""
-    echo -e "${YELLOW}SUPPORTED TOOLS:${NC}"
-    echo "  - Codex CLI"
-    echo "  - Gemini CLI"
-    echo "  - Claude Code"
-    echo "  - Cosine"
-    echo "  - OpenCode AI"
-    echo "  - Factory AI"
+    echo "Description:"
+    echo "  A script to install and manage various AI coding assistant CLIs."
+    echo "  Running the script without arguments will open an interactive menu."
 }
 
 # Colors
