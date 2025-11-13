@@ -1,7 +1,19 @@
 #!/usr/bin/env node
 const { program } = require('commander');
 const chalk = require('chalk');
-const { install, run } = require('../src/commands');
+const {
+  install,
+  run,
+  createWorktree,
+  listWorktrees,
+  removeWorktree,
+  startSession,
+  stopSession,
+  switchSession,
+  sessionStatus,
+  cleanSessions,
+  setConfigValue
+} = require('../src/commands');
 
 program
   .version('1.0.0')
@@ -10,8 +22,8 @@ program
 program
   .command('install [tool]')
   .description('Install a specific tool or all tools.')
-  .option('-v, --verbose', 'Enable verbose output for debugging.')
-  .option('-c, --config <path>', 'Specify a custom configuration file.')
+  .option('-v', '--verbose', 'Enable verbose output for debugging.')
+  .option('-c', '--config <path>', 'Specify a custom configuration file.')
   .action((tool, options) => {
     install(tool, options);
   });
@@ -21,6 +33,74 @@ program
   .description('Run a specific tool.')
   .action((tool) => {
     run(tool);
+  });
+
+program
+  .command('config <key> <value>')
+  .description('Set a configuration value (e.g., shortcuts.start-session)')
+  .option('-c, --config <path>', 'Specify a custom configuration file.')
+  .action((key, value, options) => {
+    setConfigValue(key, value, options.config);
+  });
+
+const worktree = program.command('worktree').description('Manage Git worktrees');
+
+worktree
+  .command('create <path> [branch]')
+  .description('Create a new worktree')
+  .action((path, branch) => {
+    createWorktree(path, branch);
+  });
+
+worktree
+  .command('list')
+  .description('List all worktrees')
+  .action(() => {
+    listWorktrees();
+  });
+
+worktree
+  .command('remove <path>')
+  .description('Remove a worktree')
+  .action((path) => {
+    removeWorktree(path);
+  });
+
+const session = program.command('session').description('Manage AI assistant sessions');
+
+session
+  .command('start <tool> <worktree>')
+  .description('Start a new session in a worktree')
+  .action((tool, worktree) => {
+    startSession(tool, worktree);
+  });
+
+session
+  .command('stop <worktree>')
+  .description('Stop a session in a worktree')
+  .action((worktree) => {
+    stopSession(worktree);
+  });
+
+session
+  .command('switch <worktree>')
+  .description('Switch to a different session')
+  .action((worktree) => {
+    switchSession(worktree);
+  });
+
+session
+  .command('status')
+  .description('Show the status of all sessions')
+  .action(() => {
+    sessionStatus();
+  });
+
+session
+  .command('clean')
+  .description('Remove all stopped sessions')
+  .action(() => {
+    cleanSessions();
   });
 
 program.parse(process.argv);
