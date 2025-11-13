@@ -63,15 +63,6 @@ install_claude() {
     fi
 }
 
-install_cosine() {
-    if command_exists cosine; then
-        echo -e "${GREEN}Cosine is already installed.${NC}"
-    else
-        echo -e "${YELLOW}Installing Cosine...${NC}"
-        curl -fsSL https://cosine.sh/install | bash
-    fi
-}
-
 # Menu
 echo -e "${YELLOW}Select an option:${NC}"
 echo "1) Install all AI agents"
@@ -87,24 +78,20 @@ case $choice in
         install_codex
         install_gemini
         install_claude
-        install_cosine
         ;;
     2) install_codex ;;
     3) install_gemini ;;
     4) install_claude ;;
-    5) install_cosine ;;
-    6)
+    5)
         echo "Available tools:"
         echo "1) codex"
         echo "2) gemini"
         echo "3) claude"
-        echo "4) cosine"
         read -p "Enter tool number to run: " tool
         case $tool in
             1) codex ;;
             2) gemini ;;
             3) claude ;;
-            4) cosine ;;
             *) echo "Invalid option" ;;
         esac
         ;;
